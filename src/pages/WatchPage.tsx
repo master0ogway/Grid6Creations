@@ -2,7 +2,7 @@ import { useState, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import Player from "video.js/dist/types/player";
 import { Box, Stack, Typography } from "@mui/material";
-import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
+
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
@@ -15,7 +15,7 @@ import useWindowSize from "src/hooks/useWindowSize";
 import { formatTime } from "src/utils/common";
 
 import MaxLineTypography from "src/components/MaxLineTypography";
-import VolumeControllers from "src/components/watch/VolumeControllers";
+
 import VideoJSPlayer from "src/components/watch/VideoJSPlayer";
 import PlayerSeekbar from "src/components/watch/PlayerSeekbar";
 import PlayerControlButton from "src/components/watch/PlayerControlButton";
@@ -59,41 +59,36 @@ export function Component() {
 
   const handlePlayerReady = function (player: Player): void {
     player.on("pause", () => {
-      setPlayerState((draft) => {
-        return { ...draft, paused: true };
-      });
+      setPlayerState((prev) => ({
+  ...prev,
+  paused: player.paused()
+}));
     });
 
     player.on("play", () => {
-      setPlayerState((draft) => {
-        return { ...draft, paused: false };
-      });
+      setPlayerState((prev) => ({
+  ...prev,
+  paused: player.paused()
+}));
     });
 
-    player.on("timeupdate", () => {
-      setPlayerState((draft) => {
-        return { ...draft, playedSeconds: player.currentTime() };
-      });
-    });
 
-    player.one("durationchange", () => {
-      setPlayerInitialized(true);
-      setPlayerState((draft) => ({ ...draft, duration: player.duration() }));
-    });
+  
 
     playerRef.current = player;
 
-    setPlayerState((draft) => {
-      return { ...draft, paused: player.paused() };
-    });
+    setPlayerState((prev) => ({
+  ...prev,
+  paused: player.paused()
+}));
   };
 
-  const handleVolumeChange: SliderUnstyledOwnProps["onChange"] = (_, value) => {
+  /*const handleVolumeChange: SliderUnstyledOwnProps["onChange"] = (_, value) => {
     playerRef.current?.volume((value as number) / 100);
     setPlayerState((draft) => {
       return { ...draft, volume: (value as number) / 100 };
     });
-  };
+  };*/
 
   const handleSeekTo = (v: number) => {
     playerRef.current?.currentTime(v);
@@ -209,17 +204,7 @@ export function Component() {
                   <PlayerControlButton>
                     <SkipNextIcon />
                   </PlayerControlButton>
-                  <VolumeControllers
-                    muted={playerState.muted}
-                    handleVolumeToggle={() => {
-                      playerRef.current?.muted(!playerState.muted);
-                      setPlayerState((draft) => {
-                        return { ...draft, muted: !draft.muted };
-                      });
-                    }}
-                    value={playerState.volume}
-                    handleVolume={handleVolumeChange}
-                  />
+                 
                   <Typography variant="caption" sx={{ color: "white" }}>
                     {`${formatTime(playerState.playedSeconds)} / ${formatTime(
                       playerState.duration
