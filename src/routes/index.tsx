@@ -1,11 +1,11 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
-import { MAIN_PATH } from "src/constant";
+import { Navigate, createBrowserRouter } from 'react-router-dom';
+import { MAIN_PATH } from 'src/constant';
 
-import MainLayout from "src/layouts/MainLayout";
+import MainLayout from 'src/layouts/MainLayout';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <MainLayout />,
     children: [
       {
@@ -14,20 +14,20 @@ const router = createBrowserRouter([
       },
       {
         path: MAIN_PATH.browse,
-        lazy: () => import("src/pages/HomePage"),
+        lazy: () => import('src/pages/HomePage'),
       },
       {
         path: MAIN_PATH.genreExplore,
         children: [
           {
-            path: ":genreId",
-            lazy: () => import("src/pages/GenreExplore"),
+            path: ':genreId',
+            lazy: () => import('src/pages/GenreExplore'),
           },
         ],
       },
       {
         path: MAIN_PATH.watch,
-        lazy: () => import("src/pages/WatchPage"),
+        lazy: () => import('src/pages/WatchPage'),
       },
     ],
   },

@@ -1,11 +1,11 @@
-import { ReactNode, useEffect, useState, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { ReactNode, useEffect, useState, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import { INITIAL_DETAIL_STATE } from "src/constant";
-import createSafeContext from "src/lib/createSafeContext";
-import { useLazyGetAppendedVideosQuery } from "src/store/slices/discover";
-import { MEDIA_TYPE } from "src/types/Common";
-import { MovieDetail } from "src/types/Movie";
+import { INITIAL_DETAIL_STATE } from 'src/constant';
+import createSafeContext from 'src/lib/createSafeContext';
+import { useLazyGetAppendedVideosQuery } from 'src/store/slices/discover';
+import { MEDIA_TYPE } from 'src/types/Common';
+import { MovieDetail } from 'src/types/Movie';
 
 interface DetailType {
   id?: number;
@@ -16,18 +16,13 @@ export interface DetailModalConsumerProps {
   setDetailType: (newDetailType: DetailType) => void;
 }
 
-export const [useDetailModal, Provider] =
-  createSafeContext<DetailModalConsumerProps>();
+export const [useDetailModal, Provider] = createSafeContext<DetailModalConsumerProps>();
 
-export default function DetailModalProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function DetailModalProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
-  const [detail, setDetail] = useState<
-    { mediaDetail?: MovieDetail } & DetailType
-  >(INITIAL_DETAIL_STATE);
+  const [detail, setDetail] = useState<{ mediaDetail?: MovieDetail } & DetailType>(
+    INITIAL_DETAIL_STATE,
+  );
 
   const [getAppendedVideos] = useLazyGetAppendedVideosQuery();
 
@@ -43,16 +38,12 @@ export default function DetailModalProvider({
         setDetail(INITIAL_DETAIL_STATE);
       }
     },
-    []
+    [],
   );
 
   useEffect(() => {
     setDetail(INITIAL_DETAIL_STATE);
   }, [location.pathname, setDetail]);
 
-  return (
-    <Provider value={{ detail, setDetailType: handleChangeDetail }}>
-      {children}
-    </Provider>
-  );
+  return <Provider value={{ detail, setDetailType: handleChangeDetail }}>{children}</Provider>;
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
 export default function useOffSetTop(top: number) {
   const [offsetTop, setOffSetTop] = useState(false);
@@ -11,9 +11,9 @@ export default function useOffSetTop(top: number) {
   }, [top]);
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll);
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener('scroll', onScroll);
     };
   }, [top]);
 

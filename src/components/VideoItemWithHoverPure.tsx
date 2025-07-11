@@ -1,4 +1,4 @@
-import { PureComponent, ForwardedRef, forwardRef } from "react";
+import { PureComponent, ForwardedRef, forwardRef } from 'react';
 
 type VideoItemWithHoverPureType = {
   src: string;
@@ -13,21 +13,21 @@ class VideoItemWithHoverPure extends PureComponent<VideoItemWithHoverPureType> {
         ref={this.props.innerRef}
         style={{
           zIndex: 9,
-          cursor: "pointer",
+          cursor: 'pointer',
           borderRadius: 0.5,
-          width: "100%",
-          position: "relative",
-          paddingTop: "calc(9 / 16 * 100%)",
+          width: '100%',
+          position: 'relative',
+          paddingTop: 'calc(9 / 16 * 100%)',
         }}
       >
         <img
           src={this.props.src}
           style={{
             top: 0,
-            height: "100%",
-            objectFit: "cover",
-            position: "absolute",
-            borderRadius: "4px",
+            height: '100%',
+            objectFit: 'cover',
+            position: 'absolute',
+            borderRadius: '4px',
           }}
           onPointerEnter={() => {
             // console.log("onPointerEnter");
@@ -45,8 +45,8 @@ class VideoItemWithHoverPure extends PureComponent<VideoItemWithHoverPureType> {
 
 const VideoItemWithHoverRef = forwardRef<
   HTMLDivElement,
-  Omit<VideoItemWithHoverPureType, "innerRef">
+  Omit<VideoItemWithHoverPureType, 'innerRef'>
 >((props, ref) => <VideoItemWithHoverPure {...props} innerRef={ref} />);
-VideoItemWithHoverRef.displayName = "VideoItemWithHoverRef";
+VideoItemWithHoverRef.displayName = 'VideoItemWithHoverRef';
 
 export default VideoItemWithHoverRef;

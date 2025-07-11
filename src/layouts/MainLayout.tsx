@@ -1,12 +1,12 @@
-import { Outlet, useLocation, useNavigation } from "react-router-dom";
-import Box from "@mui/material/Box";
+import { Outlet, useLocation, useNavigation } from 'react-router-dom';
+import Box from '@mui/material/Box';
 
-import VideoPortalContainer from "src/components/VideoPortalContainer";
-import DetailModalProvider from "src/providers/DetailModalProvider";
-import PortalProvider from "src/providers/PortalProvider";
-import { MAIN_PATH } from "src/constant";
-import { Footer, MainHeader } from "src/components/layouts";
-import MainLoadingScreen from "src/components/MainLoadingScreen";
+import VideoPortalContainer from 'src/components/VideoPortalContainer';
+import DetailModalProvider from 'src/providers/DetailModalProvider';
+import PortalProvider from 'src/providers/PortalProvider';
+import { MAIN_PATH } from 'src/constant';
+import { Footer, MainHeader } from 'src/components/layouts';
+import MainLoadingScreen from 'src/components/MainLoadingScreen';
 
 export default function MainLayout() {
   const location = useLocation();
@@ -15,15 +15,14 @@ export default function MainLayout() {
   return (
     <Box
       sx={{
-        width: "100%",
-        minHeight: "100vh",
-        bgcolor: "background.default",
+        width: '100%',
+        minHeight: '100vh',
+        bgcolor: 'background.default',
       }}
     >
       <MainHeader />
-      {navigation.state !== "idle" && <MainLoadingScreen />}
+      {navigation.state !== 'idle' && <MainLoadingScreen />}
       <DetailModalProvider>
-       
         <PortalProvider>
           {/* <MainLoadingScreen /> */}
           <Outlet />

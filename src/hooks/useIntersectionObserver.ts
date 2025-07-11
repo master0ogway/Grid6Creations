@@ -1,9 +1,9 @@
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from 'react';
 // import { buildThresholdList } from "src/utils";
 
 export default function useIntersectionObserver(
   ref: RefObject<HTMLElement>,
-  options?: IntersectionObserverInit
+  options?: IntersectionObserverInit,
 ) {
   const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
 
@@ -14,10 +14,10 @@ export default function useIntersectionObserver(
       },
       options ?? {
         root: null,
-        rootMargin: "0px",
+        rootMargin: '0px',
         // threshold: buildThresholdList(),
         threshold: 1,
-      }
+      },
     );
 
     if (ref.current) {

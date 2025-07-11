@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from "react";
-import { Movie } from "src/types/Movie";
-import { usePortal } from "src/providers/PortalProvider";
-import { useGetConfigurationQuery } from "src/store/slices/configuration";
-import VideoItemWithHoverPure from "./VideoItemWithHoverPure";
+import { useEffect, useState, useRef } from 'react';
+import { Movie } from 'src/types/Movie';
+import { usePortal } from 'src/providers/PortalProvider';
+import { useGetConfigurationQuery } from 'src/store/slices/configuration';
+import VideoItemWithHoverPure from './VideoItemWithHoverPure';
 interface VideoItemWithHoverProps {
   video: Movie;
 }

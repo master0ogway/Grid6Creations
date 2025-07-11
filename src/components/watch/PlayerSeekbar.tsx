@@ -1,32 +1,32 @@
-import Slider from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
+import Slider from '@mui/material/Slider';
+import { styled } from '@mui/material/styles';
 
-import { formatTime } from "src/utils/common";
+import { formatTime } from 'src/utils/common';
 
 const StyledSlider = styled(Slider)({
   borderRadius: 0,
-  "& .NetflixSlider-track": {
-    backgroundColor: "red !important",
+  '& .NetflixSlider-track': {
+    backgroundColor: 'red !important',
     border: 0,
   },
-  "& .NetflixSlider-rail": {
-    border: "none",
-    backgroundColor: "white !important",
+  '& .NetflixSlider-rail': {
+    border: 'none',
+    backgroundColor: 'white !important',
     opacity: 0.85,
   },
-  "& .NetflixSlider-thumb": {
-    borderRadius: "50%",
+  '& .NetflixSlider-thumb': {
+    borderRadius: '50%',
     height: 10,
     width: 10,
-    backgroundColor: "red",
-    "&:focus, &:hover, &.Netflix-active, &.Netflix-focusVisible": {
-      boxShadow: "inherit",
+    backgroundColor: 'red',
+    '&:focus, &:hover, &.Netflix-active, &.Netflix-focusVisible': {
+      boxShadow: 'inherit',
       height: 15,
       width: 15,
     },
-    "&:before": {
-      display: "none",
-      boxShadow: "0 2px 2px 0 #fff",
+    '&:before': {
+      display: 'none',
+      boxShadow: '0 2px 2px 0 #fff',
       height: 10,
       width: 10,
     },
@@ -64,7 +64,7 @@ function PlayerSeekbar({
   return (
     <StyledSlider
       valueLabelDisplay="auto"
-      valueLabelFormat={(v) => formatTime(v)}
+      valueLabelFormat={v => formatTime(v)}
       // components={{
       //   ValueLabel: ValueLabelComponent,
       // }}

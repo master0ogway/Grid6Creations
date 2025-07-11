@@ -1,4 +1,4 @@
-export { formatMinuteToReadable, getRandomNumber } from "./common";
+export { formatMinuteToReadable, getRandomNumber } from './common';
 
 function buildThresholdList() {
   let thresholds = [];

@@ -1,25 +1,25 @@
-import { useState, useRef, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import Player from "video.js/dist/types/player";
-import { Box, Stack, Typography } from "@mui/material";
+import { useState, useRef, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Player from 'video.js/dist/types/player';
+import { Box, Stack, Typography } from '@mui/material';
 
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import FullscreenIcon from "@mui/icons-material/Fullscreen";
-import SettingsIcon from "@mui/icons-material/Settings";
-import BrandingWatermarkOutlinedIcon from "@mui/icons-material/BrandingWatermarkOutlined";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import SettingsIcon from '@mui/icons-material/Settings';
+import BrandingWatermarkOutlinedIcon from '@mui/icons-material/BrandingWatermarkOutlined';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
-import useWindowSize from "src/hooks/useWindowSize";
-import { formatTime } from "src/utils/common";
+import useWindowSize from 'src/hooks/useWindowSize';
+import { formatTime } from 'src/utils/common';
 
-import MaxLineTypography from "src/components/MaxLineTypography";
+import MaxLineTypography from 'src/components/MaxLineTypography';
 
-import VideoJSPlayer from "src/components/watch/VideoJSPlayer";
-import PlayerSeekbar from "src/components/watch/PlayerSeekbar";
-import PlayerControlButton from "src/components/watch/PlayerControlButton";
-import MainLoadingScreen from "src/components/MainLoadingScreen";
+import VideoJSPlayer from 'src/components/watch/VideoJSPlayer';
+import PlayerSeekbar from 'src/components/watch/PlayerSeekbar';
+import PlayerControlButton from 'src/components/watch/PlayerControlButton';
+import MainLoadingScreen from 'src/components/MainLoadingScreen';
 
 export function Component() {
   const playerRef = useRef<Player | null>(null);
@@ -38,7 +38,7 @@ export function Component() {
   const windowSize = useWindowSize();
   const videoJsOptions = useMemo(() => {
     return {
-      preload: "metadata",
+      preload: 'metadata',
       autoplay: true,
       controls: false,
       // responsive: true,
@@ -49,8 +49,8 @@ export function Component() {
         {
           // src: videoData?.video,
           // src: "https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8",
-          src: "https://bitmovin-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
-          type: "application/x-mpegurl",
+          src: 'https://bitmovin-a.akamaihd.net/content/sintel/hls/playlist.m3u8',
+          type: 'application/x-mpegurl',
         },
       ],
     };
@@ -58,29 +58,26 @@ export function Component() {
   }, [windowSize]);
 
   const handlePlayerReady = function (player: Player): void {
-    player.on("pause", () => {
-      setPlayerState((prev) => ({
-  ...prev,
-  paused: player.paused()
-}));
+    player.on('pause', () => {
+      setPlayerState(prev => ({
+        ...prev,
+        paused: player.paused(),
+      }));
     });
 
-    player.on("play", () => {
-      setPlayerState((prev) => ({
-  ...prev,
-  paused: player.paused()
-}));
+    player.on('play', () => {
+      setPlayerState(prev => ({
+        ...prev,
+        paused: player.paused(),
+      }));
     });
-
-
-  
 
     playerRef.current = player;
 
-    setPlayerState((prev) => ({
-  ...prev,
-  paused: player.paused()
-}));
+    setPlayerState(prev => ({
+      ...prev,
+      paused: player.paused(),
+    }));
   };
 
   /*const handleVolumeChange: SliderUnstyledOwnProps["onChange"] = (_, value) => {
@@ -95,14 +92,14 @@ export function Component() {
   };
 
   const handleGoBack = () => {
-    navigate("/browse");
+    navigate('/browse');
   };
 
   if (!!videoJsOptions.width) {
     return (
       <Box
         sx={{
-          position: "relative",
+          position: 'relative',
         }}
       >
         <VideoJSPlayer options={videoJsOptions} onReady={handlePlayerReady} />
@@ -113,10 +110,10 @@ export function Component() {
               left: 0,
               right: 0,
               bottom: 0,
-              position: "absolute",
+              position: 'absolute',
             }}
           >
-            <Box px={2} sx={{ position: "absolute", top: 75 }}>
+            <Box px={2} sx={{ position: 'absolute', top: 75 }}>
               <PlayerControlButton onClick={handleGoBack}>
                 <KeyboardBackspaceIcon />
               </PlayerControlButton>
@@ -124,8 +121,8 @@ export function Component() {
             <Box
               px={2}
               sx={{
-                position: "absolute",
-                top: { xs: "40%", sm: "55%", md: "60%" },
+                position: 'absolute',
+                top: { xs: '40%', sm: '55%', md: '60%' },
                 left: 0,
               }}
             >
@@ -133,7 +130,7 @@ export function Component() {
                 variant="h3"
                 sx={{
                   fontWeight: 700,
-                  color: "white",
+                  color: 'white',
                 }}
               >
                 Title
@@ -142,8 +139,8 @@ export function Component() {
             <Box
               px={{ xs: 0, sm: 1, md: 2 }}
               sx={{
-                position: "absolute",
-                top: { xs: "50%", sm: "60%", md: "70%" },
+                position: 'absolute',
+                top: { xs: '50%', sm: '60%', md: '70%' },
                 right: 0,
               }}
             >
@@ -153,19 +150,16 @@ export function Component() {
                   px: 1,
                   py: 0.5,
                   fontWeight: 700,
-                  color: "white",
-                  bgcolor: "red",
-                  borderRadius: "12px 0px 0px 12px",
+                  color: 'white',
+                  bgcolor: 'red',
+                  borderRadius: '12px 0px 0px 12px',
                 }}
               >
                 12+
               </Typography>
             </Box>
 
-            <Box
-              px={{ xs: 1, sm: 2 }}
-              sx={{ position: "absolute", bottom: 20, left: 0, right: 0 }}
-            >
+            <Box px={{ xs: 1, sm: 2 }} sx={{ position: 'absolute', bottom: 20, left: 0, right: 0 }}>
               {/* Seekbar */}
               <Stack direction="row" alignItems="center" spacing={1}>
                 <PlayerSeekbar
@@ -179,11 +173,7 @@ export function Component() {
               {/* Controller */}
               <Stack direction="row" alignItems="center">
                 {/* left controller */}
-                <Stack
-                  direction="row"
-                  spacing={{ xs: 0.5, sm: 1.5, md: 2 }}
-                  alignItems="center"
-                >
+                <Stack direction="row" spacing={{ xs: 0.5, sm: 1.5, md: 2 }} alignItems="center">
                   {!playerState.paused ? (
                     <PlayerControlButton
                       onClick={() => {
@@ -204,10 +194,10 @@ export function Component() {
                   <PlayerControlButton>
                     <SkipNextIcon />
                   </PlayerControlButton>
-                 
-                  <Typography variant="caption" sx={{ color: "white" }}>
+
+                  <Typography variant="caption" sx={{ color: 'white' }}>
                     {`${formatTime(playerState.playedSeconds)} / ${formatTime(
-                      playerState.duration
+                      playerState.duration,
                     )}`}
                   </Typography>
                 </Stack>
@@ -219,7 +209,7 @@ export function Component() {
                     maxLine={1}
                     variant="subtitle1"
                     textAlign="center"
-                    sx={{ maxWidth: 300, mx: "auto", color: "white" }}
+                    sx={{ maxWidth: 300, mx: 'auto', color: 'white' }}
                   >
                     Description
                   </MaxLineTypography>
@@ -227,11 +217,7 @@ export function Component() {
                 {/* end middle time */}
 
                 {/* right controller */}
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  spacing={{ xs: 0.5, sm: 1.5, md: 2 }}
-                >
+                <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5, md: 2 }}>
                   <PlayerControlButton>
                     <SettingsIcon />
                   </PlayerControlButton>
@@ -254,4 +240,4 @@ export function Component() {
   return null;
 }
 
-Component.displayName = "WatchPage";
+Component.displayName = 'WatchPage';

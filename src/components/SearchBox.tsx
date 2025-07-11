@@ -1,34 +1,34 @@
-import { useState, useRef } from "react";
-import { styled } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
+import { useState, useRef } from 'react';
+import { styled } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  width: "100%",
-  display: "flex",
-  alignItems: "center",
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  cursor: "pointer",
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  cursor: 'pointer',
   padding: theme.spacing(0, 1),
-  height: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .NetflixInputBase-input": {
+  color: 'inherit',
+  '& .NetflixInputBase-input': {
     width: 0,
-    transition: theme.transitions.create("width", {
+    transition: theme.transitions.create('width', {
       duration: theme.transitions.duration.complex,
       easing: theme.transitions.easing.easeIn,
     }),
-    "&:focus": {
-      width: "auto",
+    '&:focus': {
+      width: 'auto',
     },
   },
 }));
@@ -44,11 +44,7 @@ export default function SearchBox() {
   };
 
   return (
-    <Search
-      sx={
-        isFocused ? { border: "1px solid white", backgroundColor: "black" } : {}
-      }
-    >
+    <Search sx={isFocused ? { border: '1px solid white', backgroundColor: 'black' } : {}}>
       <SearchIconWrapper onClick={handleClickSearchIcon}>
         <SearchIcon />
       </SearchIconWrapper>
@@ -56,7 +52,7 @@ export default function SearchBox() {
         inputRef={searchInputRef}
         placeholder="Titles, people, genres"
         inputProps={{
-          "aria-label": "search",
+          'aria-label': 'search',
           onFocus: () => {
             setIsFocused(true);
           },

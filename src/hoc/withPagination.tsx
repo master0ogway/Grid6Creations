@@ -1,28 +1,26 @@
-import { ElementType, useCallback, useEffect } from "react";
-import MainLoadingScreen from "src/components/MainLoadingScreen";
-import { useAppDispatch, useAppSelector } from "src/hooks/redux";
+import { ElementType, useCallback, useEffect } from 'react';
+import MainLoadingScreen from 'src/components/MainLoadingScreen';
+import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 import {
   initiateItem,
   useLazyGetVideosByMediaTypeAndGenreIdQuery,
   useLazyGetVideosByMediaTypeAndCustomGenreQuery,
-} from "src/store/slices/discover";
-import { MEDIA_TYPE } from "src/types/Common";
-import { CustomGenre, Genre } from "src/types/Genre";
+} from 'src/store/slices/discover';
+import { MEDIA_TYPE } from 'src/types/Common';
+import { CustomGenre, Genre } from 'src/types/Genre';
 
 export default function withPagination(
   Component: ElementType,
   mediaType: MEDIA_TYPE,
-  genre: Genre | CustomGenre
+  genre: Genre | CustomGenre,
 ) {
   return function WithPagination() {
     const dispatch = useAppDispatch();
     const itemKey = genre.id ?? (genre as CustomGenre).apiString;
-    const mediaState = useAppSelector((state) => state.discover[mediaType]);
+    const mediaState = useAppSelector(state => state.discover[mediaType]);
     const pageState = mediaState ? mediaState[itemKey] : undefined;
-    const [getVideosByMediaTypeAndGenreId] =
-      useLazyGetVideosByMediaTypeAndGenreIdQuery();
-    const [getVideosByMediaTypeAndCustomGenre] =
-      useLazyGetVideosByMediaTypeAndCustomGenreQuery();
+    const [getVideosByMediaTypeAndGenreId] = useLazyGetVideosByMediaTypeAndGenreIdQuery();
+    const [getVideosByMediaTypeAndCustomGenre] = useLazyGetVideosByMediaTypeAndCustomGenreQuery();
 
     useEffect(() => {
       if (!mediaState || !pageState) {
@@ -54,9 +52,7 @@ export default function withPagination(
     }, []);
 
     if (pageState) {
-      return (
-        <Component genre={genre} data={pageState} handleNext={handleNext} />
-      );
+      return <Component genre={genre} data={pageState} handleNext={handleNext} />;
     }
     return <MainLoadingScreen />;
   };

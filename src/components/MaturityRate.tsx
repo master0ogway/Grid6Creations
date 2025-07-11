@@ -1,5 +1,5 @@
-import Box from "@mui/material/Box";
-import { ReactNode } from "react";
+import Box from '@mui/material/Box';
+import { ReactNode } from 'react';
 
 export default function MaturityRate({ children }: { children: ReactNode }) {
   return (
@@ -9,12 +9,12 @@ export default function MaturityRate({ children }: { children: ReactNode }) {
         pl: 1.5,
         pr: 3,
         fontSize: 22,
-        display: "flex",
-        alignItem: "center",
-        color: "text.primary",
-        border: "3px #dcdcdc",
-        borderLeftStyle: "solid",
-        bgcolor: "#33333399",
+        display: 'flex',
+        alignItem: 'center',
+        color: 'text.primary',
+        border: '3px #dcdcdc',
+        borderLeftStyle: 'solid',
+        bgcolor: '#33333399',
       }}
     >
       {children}
